@@ -1,0 +1,4 @@
+FROM mysql:5.7
+MAINTAINER ALBERT FENG <feng235ping@gmail.com>
+
+EXPOSE 3306

@@ -1,0 +1,60 @@
+sandbox_app:
+    container_name: sandbox_app
+    build: ./sandbox_app
+    links:
+      - "sandbox_db:sandbox_db"
+    volumes:
+      - ~/sandbox-deploy/source_code:/var/www
+      - ~/sandbox-deploy/source_code/upload:/data/openfire
+
+sandbox_proxy:
+    container_name: sandbox_proxy
+    build: ./sandbox_proxy
+    ports:
+      - "80:80"
+    links:
+      - "sandbox_app:sandbox_app"
+    volumes_from:
+      - "sandbox_app"
+    volumes:
+      - ~/sandbox-deploy/sandbox_proxy/data/conf:/etc/nginx/conf.d
+
+sandbox_db:
+    container_name: sandbox_db
+    build: ./sandbox_db
+    volumes:
+      - ~/sandbox-deploy/data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+sandbox_redis:
+    container_name: sandbox_redis
+    build: ./sandbox_redis
+    ports:
+      - "6379:6379"
+
+sandbox_mongo:
+    container_name: sandbox_mongo
+    build: ./sandbox_mongo
+    ports:
+      - "27017:27017"
+
+sandbox_openfire:
+    container_name: sandbox_openfire
+    build: ./sandbox_openfire
+    ports:
+      - "19090:9090"
+      - "19091:9091"
+      - "15222:5222"
+
+sandbox_elasticsearch:
+    container_name: sandbox_elasticsearch
+    build: ./sandbox_elasticsearch
+    ports:
+      - "19200:9200"
+      - "19300:9300"
+    volumes:
+      - ~/sandbox-deploy/data/elasticsearch/config:/usr/share/elasticsearch/config
+      - ~/sandbox-deploy/data/elasticsearch/data:/usr/share/elasticsearch/data

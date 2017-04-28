@@ -1,0 +1,4 @@
+FROM redis:3
+MAINTAINER ALBERT FENG <feng235ping@gmail.com>
+
+EXPOSE 6379

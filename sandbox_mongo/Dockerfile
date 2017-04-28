@@ -1,0 +1,4 @@
+FROM mongo:3
+MAINTAINER ALBERT FENG <feng235ping@gmail.com>
+
+EXPOSE 27017
