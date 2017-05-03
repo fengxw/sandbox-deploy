@@ -1,4 +1,4 @@
-It's demo to show how to build your local dev environment by docker, and manage your docker images and containers by docker compose.
+It's demo to show you how to build your local dev environment by docker, and manage your docker images and containers by docker compose.To get more info [here](http://onlyfeng.com/sandbox-deploy/).
 
 # Warming-Up
 ## Centos install docker
